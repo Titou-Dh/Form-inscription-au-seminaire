@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'inscription</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/test.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="p-3">
+    <div class="row ">
+        <div class="col-xxl-6 col-sm-10 m-auto shadow-lg my-5 p-5 cnt " >
+            <form name="f" method="post" enctype="multipart/form-data">
+                <!-- Information sur la société -->
+                <div class="input-group">
+                    <h3 class="text-center text-primary w-100 mb-5">BULLETIN D'INSCRIPTION AU SEMINAIRE</h3>
+                </div>
+                <h5>Information sur la société</h5>
+                <div class="px-3">
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" id="nom_soc" name="nom_soc"
+                            placeholder="Matricule fiscale *">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" id="band" name="band"
+                            placeholder="Numéro du bon de commande" oninput="test()">
+                    </div>
+                    <div class="input-group mb-3">
+                        <h5 hidden id="tb">Bon de Commande <span style="color:red;">*</span></h5>
+                        <input hidden type="file" name="bande" id="bc" class="form-control" accept=".pdf,.jpg,.png"
+                            title="" />
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="adress" class="form-control" id="adr_soc" placeholder="Adresse *">
+                    </div>
+                    <div class="row">
+                        <div class=" col-6"><input class="form-control" type="email" id="mail_soc" name="email_soc"
+                                placeholder="Email *"></div>
+                        <div class=" mb-4 col-6">
+                            <input type="text" name="tel_soc" class="form-control" id="tel_soc" placeholder="Tel *">
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="form-select form-control" name="tunisia_regions" id="tunisia_regions">
+                            <option value="" selected>Région *</option>
+                            <option value="TU">Tunis</option>
+                            <option value="AR">Ariana</option>
+                            <option value="BA">Ben Arous</option>
+                            <option value="MN">Manouba</option>
+                            <option value="NB">Nabeul</option>
+                            <option value="ZH">Zaghouan</option>
+                            <option value="BZ">Bizerte</option>
+                            <option value="BJ">Béja</option>
+                            <option value="JB">Jendouba</option>
+                            <option value="KF">Kef</option>
+                            <option value="SL">Siliana</option>
+                            <option value="SS">Sousse</option>
+                            <option value="MNT">Monastir</option>
+                            <option value="MH">Mahdia</option>
+                            <option value="SF">Sfax</option>
+                            <option value="KR">Kairouan</option>
+                            <option value="KS">Kasserine</option>
+                            <option value="SB">Sidi Bouzid</option>
+                            <option value="GB">Gabès</option>
+                            <option value="MD">Medenine</option>
+                            <option value="TT">Tataouine</option>
+                            <option value="TZ">Tozeur</option>
+                            <option value="GF">Gafsa</option>
+                            <option value="KB">Kebili</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Nombre de participants -->
+                <div class="form-group mb-3 px-3">
+                    <label for="nbr">
+                        <h5>Nombre de participant <span style="color:red;">*</span>:</h5>
+                    </label>
+                    <input name="nbr" id='n' type="text" onchange="emp()" class="form-control "
+                        placeholder="Nombre de participant">
+                </div>
+                <div id="inputs"></div>
+
+
+
+                <!-- Exonéré de la TVA -->
+                <h5>Exonéré de la TVA</h5>
+                <div class="form-group mb-3 py-3 row">
+                    <label class="col-3 m-auto">Exonéré a la TVA <span style="color:red;">*</span>:</label>
+                    <div class="form-check col-2 m-auto">
+                        <input type="radio" onclick="exonore2()" class="form-check-input" value="OUI" id="oui"
+                            name="ex">
+                        <label class="form-check-label" for="oui">Oui</label>
+                    </div>
+                    <div class="form-check col-2 m-auto">
+                        <input type="radio" onclick="exonore()" id='oui' class="form-check-input" value="NON" id="nn"
+                            name="ex">
+                        <label class="form-check-label" for="nn">Non</label>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <h5 id="te" hidden>Attestation d'éxonoration <span style="color:red;">*</span>:</h5>
+                    <input hidden type="file" name="Exonore" id="Exonore" class="form-control" accept=".pdf,.jpg,.png"
+                        title="Upload PDF" />
+
+                </div>
+
+
+                <!-- Responsable de la Formation -->
+                <h5>Responsable de la Formation</h5>
+                <div class="mb-3 row w-100 px-3  mb-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control " id="nom_res" name="nom_res"
+                            placeholder="Nom et Prénom*">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="GSM_res" id="GSM_res" class="in"
+                            placeholder="Gsm *">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control  " name="prof_res" id="prof_res" class="in"
+                            placeholder="Profession">
+                    </div>
+                    <div class="input-group mb-3  ">
+                        <input type="email" class="form-control  " id="mail_res" name="email_res" placeholder="Email *">
+                    </div>
+                </div>
+                <!-- Hébergement -->
+
+
+
+                <!-- Détails de paiement -->
+                <h5>Détails de paiement <span style="color:red;"> *</span>:</h5>
+                <div class="form-group mb-5 px-3">
+                    <div class="row">
+                        <div id="bank" onclick="virm()"
+                            class="col-3 m-auto d-flex justify-content-center rounded-3 flex-column p-2 shadow-sm align-items-center rad "
+                            style="height: 150px"><i class="bi bi-bank display-6"></i><span>bank</span>
+                        </div>
+                        <div id="cheq" onclick="chq()"
+                            class="col-3 m-auto d-flex justify-content-center rounded-3 flex-column p-2 shadow-sm align-items-center rad"
+                            style="height: 150px"><img src="img/cheque-icon.svg" style="width: 50%;"
+                                alt=""><span>cheque</span></div>
+                        <div id="cash" onclick="inst()"
+                            class="col-3 m-auto d-flex justify-content-center rounded-3 flex-column p-2 shadow-sm align-items-center rad"
+                            style="height: 150px"><i class="bi bi-clock-history display-6"></i><span>en instance</span>
+                        </div>
+                    </div>
+                    <div hidden class="form-group mb-3">
+                        <input hidden type="text" id="num" name="num" class="form-control" placeholder="num" />
+                    </div>
+                    <div class="form-group mb-3 " id="i">
+                        <input hidden type="text" id="nom_bonk" class="form-control" name="nom_bank"
+                            placeholder="Nom de la Banque" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <h5 id="titre" hidden>Chéques image <span style="color:red;">*</span>: (.pdf , .jpg)</h5>
+                        <input hidden class="form-control" type="file" name="file3" id="Chéques image"
+                            class="form-control" accept=".pdf,.jpg,.png" title="Upload   " />
+                    </div>
+                </div>
+                <div class="">
+                    <h5>Théme de la séminaire:</h5>
+                    <div name="sujet">
+
+                        <?php echo "«" . $r['theme'] . "»." ?>
+                    </div>
+                    <h5 class="text-primary">Date:</h5>
+                    <?php echo $r['date'] . "." ?>
+                    <h5 class="text-primary">Lieu du séminaire:</h5>
+                    <?php echo $r['lieu'] . "." ?>
+                    <h5 class="text-primary">L’organisateur:</h5>L’association tunisienne des inspecteurs du travail «
+                    ATIT »
+                    <h5 class="text-primary">Email:</h5>atitinscription@gmail.com
+                    <h5 class="text-primary">Frais d’inscription:</h5>
+                    <p style="opacity:0.7;color: black;line-height: 22px;">
+                        Les frais d'inscription sont à la charge du participant et sont fixés à
+                        <?php echo $r['inscription'] ?> DT HTVA(+
+                        <?php echo $r['fdpHTVA'] ?>% TVA) par personne avec un supplément de
+                        <?php echo $r['ss'] ?> DT HTVA(+
+                        <?php echo $r['fdnHTVA'] ?>% TVA) / nuitée/ Chambre Single / Pension Complète pour les
+                        participants
+                        désirant héberger. Ils sont payés par chèque libellé au nom de l'ATIT ou par virement bancaire
+                        sur
+                        Attijaribank Agence Av Med V Tunis/RIB: <b>04103003404400123001</b>, et adressés en même temps
+                        que
+                        le bulletin d’inscription.
+                        <br> NB:pour plus d’information et inscription nous vous prions de bien vouloir s'adresser à :
+                        <br> <span>&nbsp;Mme.Naziha CHAMROUKHI</span>:&nbsp;98 928 351
+                        <br> <span>&nbsp;Mr. Karim BOUJDARIA</span>:&nbsp;98 226 441
+                        <br> <span>&nbsp;Mr.HabibBRAHEM</span>:&nbsp;97 257 149
+                    </p>
+                </div>
+                <!-- ... More fields ... -->
+
+                <div class="mb-3 w-100 text-center">
+                    <button onclick="return verif()" type="submit" name="send" class="btn btn-primary">Valider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="height: 150px;">
+    </div>
+    <div class="row">
+
+        <div class="col-3 m-auto bg-light w-100 text-center text-primary rounded">© DROITS D'AUTEUR ATIT</div>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/verif.js"></script>
+</body>
+
+</html>
